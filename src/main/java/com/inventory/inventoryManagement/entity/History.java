@@ -1,28 +1,31 @@
 package com.inventory.inventoryManagement.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
+@Table(name = "history")
 public class History {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String operation; // Operation type: "ADD", "REMOVE", "UPDATE", "DELETE"
+    @Column(nullable = false)
+    private String operation;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
+    //@ManyToOne
+   // @JoinColumn(name = "product_id", nullable = false)
+    private Integer productId;
+    @Column(nullable = false)
+    private LocalDateTime dateTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd:HH:mm")
+    public LocalDateTime getCreatedDate() {
+        return dateTime;
+    }
 
-    private LocalDateTime date;
+
 }

@@ -1,35 +1,33 @@
 package com.inventory.inventoryManagement.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-
+@Data
+@Table(name = "warehouses")
 public class Warehouse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private String address;
 
+    @Column(nullable = false)
     private String region;
 
+    @Column(nullable = false)
     private String city;
 
-    @ManyToMany(mappedBy = "warehouse")
-    private Set<Product> products = new HashSet<>();
-
+    @OneToMany(mappedBy = "warehouse")
+    @JsonIgnore
+    private List<Product> products;
 
 }
