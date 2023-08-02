@@ -7,7 +7,6 @@ import com.inventory.inventoryManagement.entity.Warehouse;
 import com.inventory.inventoryManagement.repository.HistoryRepository;
 import com.inventory.inventoryManagement.repository.ProductRepository;
 import com.inventory.inventoryManagement.repository.WarehouseRepository;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
